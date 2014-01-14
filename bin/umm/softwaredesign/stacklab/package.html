@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+  Copyright 2003, Nic McPhee
+-->
+</head>
+<body bgcolor="white">
+
+<p>
+Contains an interface and implementation of a basic stack class. Used in
+lab exercises in the University of Minnesota, Morris, CSci 3601
+(Software Design and Development) course.
+</p>
+
+<p>
+The <code>test</code> directory contains a suite of specifications written
+	using the <link href="http://spockframework.org/" title="Spock homepage">Spock specification framework</a> 
+	that defines the expected behavior of the <code>Stack</code> class. When you get that suite
+	of specifications to pass, then you probably have a pretty reasonable implementation of
+	of the <code>Stack</code> class, although it's always possible that there can
+	be errors that aren't caught by these specifications, so don't just assume that
+	your implementation is completely correct just because the tests pass 
+</p>
+
+<h2>Package Specification</h2>
+
+<ul>
+	<li><code>StackIF</code> is the interface that defines what a
+	stack should be.</li>
+	<li><code>Stack</code> should (eventually) become a complete
+	implementation of that interface.</li>
+	<li><code>StackUnderflowException</code> is a runtime exception
+	that is thrown when a stack underflows, i.e., when we pop or top an
+	empty stack.</li>
+</ul>
+
+<h2>Related Documentation</h2>
+
+For a description of the lab and related materials (e.g., relevant
+readings) see the
+<A
+	HREF="https://wiki.umn.edu/UmmCSci3601s12/StackLab">lab
+wiki page</A>
+.
+
+<!-- Put @see and @since tags down here. -->
+
+@since January 2012
+
+</body>
+</html>
