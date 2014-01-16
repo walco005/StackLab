@@ -14,12 +14,15 @@ import umm.softwaredesign.stacklab.StackIF;
  * @version $Revision: 1.16 $
  */
 public class Stack<T> implements StackIF<T> {
+	private int count = 0; //Keeps track of the size of theStack.
+	private ArrayList<T> theStack;
+	
     /**
      * Construct an empty stack.
      */
 	
     public Stack() {
-    	StackIF<T> theStack = new Stack<T>();
+    	theStack = new ArrayList<T>(); //Initializes theStack.
     }
 
     /**
@@ -31,10 +34,11 @@ public class Stack<T> implements StackIF<T> {
      *            the list of items to initialize the stack
      */
     public Stack(List<T> items) {
+    	theStack = new ArrayList<T>();
     	
-    	StackIF<T> theStack = new Stack<T>();
-        for (int i = 0; i < items.size(); i++) {
-        	StackIF<T> theStack = new Stack<T>();
+        for (T element : items) { //Loop to add the items.
+        	theStack.add(element);
+        	count++;
         }
     }
 
@@ -44,7 +48,7 @@ public class Stack<T> implements StackIF<T> {
      * @return the number of elements on the stack
      */
     public int size() {
-        throw new UnsupportedOperationException();
+        return count;
     }
 
     /**
@@ -53,7 +57,7 @@ public class Stack<T> implements StackIF<T> {
      * @return true if the stack is empty, false otherwise
      */
     public boolean isEmpty() {
-        throw new UnsupportedOperationException();
+        return count == 0;
     }
 
     /**
@@ -63,7 +67,8 @@ public class Stack<T> implements StackIF<T> {
      *            the value to be pushed.
      */
     public void push(T value) {
-        throw new UnsupportedOperationException();
+        theStack.add(value);
+        count++;
     }
 
     /**
@@ -75,7 +80,13 @@ public class Stack<T> implements StackIF<T> {
      *             if the stack is empty
      */
     public T pop() {
-        throw new UnsupportedOperationException();
+    	if (count == 0) {
+    		throw new StackUnderflowException();
+    	}
+        T popped = theStack.get(count - 1);
+        theStack.remove(count - 1);
+        count--;
+        return popped;
     }
 
     /**
@@ -87,7 +98,10 @@ public class Stack<T> implements StackIF<T> {
      *             if the stack is empty
      */
     public T top() {
-        throw new UnsupportedOperationException();
+    	if (count == 0) {
+    		throw new StackUnderflowException();
+    	}
+        return theStack.get(count - 1);
     }
 
     /**
@@ -99,7 +113,17 @@ public class Stack<T> implements StackIF<T> {
      *         elements
      */
     public boolean hasElements(List<T> items) {
-        throw new UnsupportedOperationException();
+        if (theStack == items) return true;
+        if (count != items.size()) return false;
+        int j = 0;
+        
+        for (T element : items) {
+        	if (theStack.get(j) != element) {
+        		return false;
+        	}
+        	j++;
+        }
+        return true;
     }
 
     /**
@@ -112,6 +136,16 @@ public class Stack<T> implements StackIF<T> {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        String listString = "Stack[";
+        for (int i = 0; i < count; i++) {
+        	if (i == count - 1) {
+        		listString += theStack.get(i);
+        	} else {
+        		listString += theStack.get(i) + ", ";
+        	}
+        }
+        
+        listString += "]";
+        return listString;
     }
 }
